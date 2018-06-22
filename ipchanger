@@ -1,0 +1,12 @@
+#!/usr/bin/expect
+spawn telnet localhost 9051
+expect "Escape character is '^]'."
+send "authenticate \"yourpassword\"\r"
+expect "250 OK"
+sleep 3
+send "signal newnym\r"
+expect "250 OK"
+sleep 2
+send "\x1D\r"
+expect "telnet>"
+send "q"
